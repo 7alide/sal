@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Mojangles";
+  src: url("fonts/mojangles.woff2") format("woff2"),
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+div {
+  margin: 5% 15%;
+  font-family: "Mojangles";
+}
