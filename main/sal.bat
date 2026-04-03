@@ -1,0 +1,1 @@
+"%cd%\python314\pythonw.exe" sal.py & exit
