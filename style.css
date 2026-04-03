@@ -10,6 +10,7 @@ div {
   font-family: "Mojangles";
 }
 .button {
+  position: relative;
   border: 5px solid #4a6f28;
   border-radius: 8px;
   color: white;
