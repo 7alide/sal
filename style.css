@@ -5,10 +5,6 @@
   font-style: normal;
   font-display: swap;
 }
-header {
-  width: 100%;
-  background-color: black;
-}
 nav {
   margin: 2% 5%;
   display: flex;
