@@ -12,6 +12,9 @@ nav {
   text-decoration: none;
   gap: 20px;
 }
+nav li {
+  list-style-type: none;
+}
 a {
   color: #add8e6;
 }
