@@ -5,6 +5,19 @@
   font-style: normal;
   font-display: swap;
 }
+header {
+  width: 100%;
+  background-color: black;
+}
+nav {
+  margin: 2% 5%;
+  display: flex;
+  text-decoration: none;
+  gap: 20px;
+}
+a {
+  color: #add8e6;
+}
 html {
   background-image: url("background.png");
   background-repeat: repeat;
