@@ -8,7 +8,7 @@ echo set WshShell = WScript.CreateObject("WScript.Shell") > "%temp%\MakeShortcut
 echo set oShellLink = WshShell.CreateShortcut("%shortcutPath%") >> "%temp%\MakeShortcut.vbs"
 echo oShellLink.TargetPath = "%targetPath%" >> "%temp%\MakeShortcut.vbs"
 echo oShellLink.WorkingDirectory = "%targetDir%" >> "%temp%\MakeShortcut.vbs"
-echo oShellLink.WindowStyle = 1 >> "%temp%\MakeShortcut.vbs"
+echo oShellLink.WindowStyle = 7 >> "%temp%\MakeShortcut.vbs"
 echo oShellLink.IconLocation = "%iconPath%" >> "%temp%\MakeShortcut.vbs"
 echo oShellLink.Description = "7alide SAL for Windows" >> "%temp%\MakeShortcut.vbs"
 echo oShellLink.Save >> "%temp%\MakeShortcut.vbs"

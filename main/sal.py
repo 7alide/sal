@@ -7,6 +7,7 @@ import webbrowser
 import requests
 import sys
 import json
+import subprocess
 
 name = "SAL"
 current = pathlib.Path(__file__).parent.resolve()
@@ -20,16 +21,15 @@ class jsoncheck():
         with open(json_path, "r", encoding="utf-8") as f:
             self.metadata = json.load(f)
 
-if jsoncheck().metadata["asign"] != "com.7alide.sal" or jsoncheck().metadata["ver"] != "1.0" or jsoncheck().metadata["enc"] != "G9nkCyU8SYfEK6ApFuhE26FWliJeDDapfjySbg7pZHprHeO3wANRBcjO7AFiBtXu":
-    tkinter.messagebox.showerror("Error", "File had been modified (Error Code: 575)\nPlease reinstall the launcher again.")
+if jsoncheck().metadata["asign"] != "com.7alide.sal" or jsoncheck().metadata["ver"] != "1.1" or jsoncheck().metadata["enc"] != "G9nkCyU8SYfEK6ApFuhE26FWliJeDDapfjySbg7pZHprHeO3wANRBcjO7AFiBtXu":
+    tkinter.messagebox.showerror("Modified", "File had been modified (Error Code: 575)\nPlease reinstall the launcher again.")
     sys.exit()
 
 if not jbin.exists():
-    tkinter.messagebox.showerror("Cannot found Java", f"Cannot found Java at {jbin} (Error Code: 579)\nPlease reinstall the launcher again.")
+    tkinter.messagebox.showerror("Java Lost", f"Cannot found Java at {jbin} (Error Code: 579)\nPlease reinstall the launcher again.")
     sys.exit()
 
 links = {
-    # Alpha v1.0
     "Alpha v1.0.6": "a1.0.6/a1.0.6",
     "Alpha v1.0.6_01": "a1.0.6/a1.0.6_01",
     "Alpha v1.0.6_02": "a1.0.6/a1.0.6_02",
@@ -55,13 +55,31 @@ links = {
     "Alpha v1.0.17_02": "a1.0.17/a1.0.17_02",
     "Alpha v1.0.17_03": "a1.0.17/a1.0.17_03",
     "Alpha v1.0.17_04": "a1.0.17/a1.0.17_04",
-    # Alpha v1.1
-    "Alpha v1.1.0": "a.1.1.0/a1.1.0",
-    "Alpha v1.1.1": "a.1.1.1/a1.1.1",
+    "Alpha v1.1.0 (Original)": "a1.1.0/a1.1.0-o",
+    "Alpha v1.1.0 (Launcher)": "a1.1.0/a1.1.0-o-l",
+    "Alpha v1.1.0": "a1.1.0/a1.1.0",
+    "Alpha v1.1.1": "a1.1.1/a1.1.1",
+    "Alpha v1.1.2": "a1.1.2/a1.1.2",
+    "Alpha v1.1.2_01": "a1.1.2/a1.1.2_01",
+    "Alpha v1.2.0": "a1.2.0/a1.2.0",
+    "Alpha v1.2.0_01": "a1.2.0/a1.2.0_01",
+    "Alpha v1.2.0_02": "a1.2.0/a1.2.0_02",
+    "Alpha v1.2.0_02 (Launcher)": "a1.2.0/a1.2.0_02-l",
+    "Alpha v1.2.1_01": "a1.2.1/a1.2.1_01",
+    "Alpha v1.2.2 (Original)": "a1.2.2/a1.2.2-o",
+    "Alpha v1.2.2": "a1.2.2/a1.2.2",
+    "Alpha v1.2.3": "a1.2.3/a1.2.3",
+    "Alpha v1.2.3_01 (Original)": "a1.2.3/a1.2.3-o",
+    "Alpha v1.2.3_01": "a1.2.3/a1.2.3_01",
+    "Alpha v1.2.3_02": "a1.2.3/a1.2.3_02",
+    "Alpha v1.2.3_04": "a1.2.3/a1.2.3_04",
+    "Alpha v1.2.3_05": "a1.2.3/a1.2.3_05",
+    "Alpha v1.2.4_01": "a1.2.4/a1.2.4_01",
+    "Alpha v1.2.5": "a1.2.5/a1.2.5",
+    "Alpha v1.2.6": "a1.2.6/a1.2.6",
 }
 
 pair = {
-    # Alpha v1.0
     "Alpha v1.0.6": "a1.0.6",
     "Alpha v1.0.6_01": "a1.0.6_01",
     "Alpha v1.0.6_02": "a1.0.6_02",
@@ -87,9 +105,28 @@ pair = {
     "Alpha v1.0.17_02": "a1.0.17_02",
     "Alpha v1.0.17_03": "a1.0.17_03",
     "Alpha v1.0.17_04": "a1.0.17_04",
-    # Alpha v1.1
-    "Alpha v1.1.0": "a1.1.0/a1.1.0",
-    "Alpha v1.1.1": "a1.1.1/a1.1.1",
+    "Alpha v1.1.0 (Original)": "a1.1.0-o",
+    "Alpha v1.1.0 (Launcher)": "a1.1.0-o-l",
+    "Alpha v1.1.0": "a1.1.0",
+    "Alpha v1.1.1": "a1.1.1",
+    "Alpha v1.1.2": "a1.1.2",
+    "Alpha v1.1.2_01": "a1.1.2_01",
+    "Alpha v1.2.0": "a1.2.0",
+    "Alpha v1.2.0_01": "a1.2.0_01",
+    "Alpha v1.2.0_02": "a1.2.0_02",
+    "Alpha v1.2.0_02 (Launcher)": "a1.2.0_02-l",
+    "Alpha v1.2.1_01": "a1.2.1_01",
+    "Alpha v1.2.2 (Original)": "a1.2.2-o",
+    "Alpha v1.2.2": "a1.2.2",
+    "Alpha v1.2.3": "a1.2.3",
+    "Alpha v1.2.3_01 (Original)": "a1.2.3-o",
+    "Alpha v1.2.3_01": "a1.2.3_01",
+    "Alpha v1.2.3_02": "a1.2.3_02",
+    "Alpha v1.2.3_04": "a1.2.3_04",
+    "Alpha v1.2.3_05": "a1.2.3_05",
+    "Alpha v1.2.4_01": "a1.2.4_01",
+    "Alpha v1.2.5": "a1.2.5",
+    "Alpha v1.2.6": "a1.2.6",
 }
 
 now = datetime.datetime.now()
@@ -114,7 +151,7 @@ def download(url, filename):
     if d.status_code == 200:
         save.write_bytes(d.content)
     else:
-        tkinter.messagebox.showerror("Failed", "Download failed (Error Code: 578)\nPlease check your internet connection.")
+        tkinter.messagebox.showerror("Download Failed", "Download failed (Error Code: 578)\nPlease check your internet connection.")
 
 months = {
     1: "January",
@@ -137,7 +174,6 @@ if now.year < 2009 and now.month < 5 and now.day < 17:
 match easygui.choicebox(f"👋{tms}, today is {months[now.month]} {now.day} of {now.year}. {ad}", name, ["Select Versions", "About", "Join Organisation", "Exit"]):
     case "Select Versions":
         select = easygui.choicebox("Select Version\n(Due to technical issues, Applet does not support launching yet)", name, [
-            # Alpha v1.0
             "Alpha v1.0.6",
             "Alpha v1.0.6_01",
             "Alpha v1.0.6_02",
@@ -163,10 +199,26 @@ match easygui.choicebox(f"👋{tms}, today is {months[now.month]} {now.day} of {
             "Alpha v1.0.17_02",
             "Alpha v1.0.17_03",
             "Alpha v1.0.17_04",
-            # Alpha v1.1
             "Alpha v1.1.0",
             "Alpha v1.1.1",
-
+            "Alpha v1.1.2",
+            "Alpha v1.1.2_01",
+            "Alpha v1.2.0",
+            "Alpha v1.2.0_01",
+            "Alpha v1.2.0_02",
+            "Alpha v1.2.0_02 (Launcher)",
+            "Alpha v1.2.1_01",
+            "Alpha v1.2.2 (Original)",
+            "Alpha v1.2.2",
+            "Alpha v1.2.3",
+            "Alpha v1.2.3_01 (Original)",
+            "Alpha v1.2.3_01",
+            "Alpha v1.2.3_02",
+            "Alpha v1.2.3_04",
+            "Alpha v1.2.3_05",
+            "Alpha v1.2.4_01",
+            "Alpha v1.2.5",
+            "Alpha v1.2.6",
         ])
 
         if select is None:
@@ -176,15 +228,21 @@ match easygui.choicebox(f"👋{tms}, today is {months[now.month]} {now.day} of {
         
         fp = current / f"{pair[select]}.jar"
 
+        if select == "Alpha v1.1.1": 
+            if easygui.buttonbox("This version had issue of Gamma\nDo you want to launch it?", "Warning", ["Yes", "No"]) == "No":
+                sys.exit()
+
         if fp.exists():
             os.chdir(current)
             cmd = f'{jbin} -Xmx1024M -Xms1024M -cp "lwjgl.jar";"lwjgl_util.jar";"jinput.jar";"{pair[select]}.jar" -Djava.library.path="{current / "natives"}" -Dnet.java.games.input.librarypath="{current / "natives"}" -Djava.util.Arrays.useLegacyMergeSort=true -Dsun.java2d.opengl=true -Dorg.lwjgl.librarypath="{current / "natives"}" {asign}'
-            os.system(cmd + " & pause")
+            subprocess.Popen(cmd, shell=False, cwd=current)
+            sys.exit()
         else:
             download(f"https://github.com/7alide/sal/raw/refs/heads/main/versions/{links[select]}.jar", f"{pair[select]}.jar")
             os.chdir(current)
             cmd = f'{jbin} -Xmx1024M -Xms1024M -cp "lwjgl.jar";"lwjgl_util.jar";"jinput.jar";"{pair[select]}.jar" -Djava.library.path="{current / "natives"}" -Dnet.java.games.input.librarypath="{current / "natives"}" -Djava.util.Arrays.useLegacyMergeSort=true -Dsun.java2d.opengl=true -Dorg.lwjgl.librarypath="{current / "natives"}" {asign}'
-            os.system(cmd + " & pause")
+            subprocess.Popen(cmd, shell=False, cwd=current)
+            sys.exit()
     
     case "About":
         tkinter.messagebox.showinfo("About", f"Version: {jsoncheck().metadata['ver']}\nhttps://github.com/7alide/sal\nCopyright©️ 2026 7alide")
