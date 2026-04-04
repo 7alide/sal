@@ -17,6 +17,7 @@ nav li {
 }
 a {
   color: #add8e6;
+  text-decoration: none;
 }
 html {
   background-image: url("background.png");
